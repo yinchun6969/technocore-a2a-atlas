@@ -99,6 +99,7 @@ bash "$stage/a2a/deploy/a2a-v5/install-a2a-suite-v5.5.sh" "--$MODE"
 case "$ROLE" in
   ai2ai)
     bash "$stage/a2a/deploy/a2a-v5/install-verifiable-evidence-v5.5.2.sh" "--$MODE"
+    bash "$stage/a2a/deploy/a2a-v5/install-human-action-center-v1.sh" "--$MODE"
     ;;
   aizong)
     bash "$stage/a2a/deploy/a2a-v5/install-aizong-cursor-poll-v3.6.sh" "--$MODE"
@@ -132,5 +133,8 @@ if [[ "$MODE" == check ]]; then
 else
   echo "TECHNOCORE_A2A_ATLAS_INSTALLED"
   echo "role=$ROLE; a2a=$A2A_VERSION; atlas=$WITH_ATLAS"
-  echo "next=run role status; verify a real five-stage signed workflow"
+  if [[ "$ROLE" == ai2ai ]]; then
+    echo "human_action_center=enabled; telegram=/inbox,/alert,/ack,/approve-pr,/snooze,/close"
+  fi
+  echo "next=run role status; verify a real five-stage signed workflow and action inbox"
 fi

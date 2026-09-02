@@ -2,8 +2,8 @@
 
 [中文](README.md)
 
-A role-aware integration entry point for the **Technocore A2A v5.5.2** signed
-three-agent workflow and the **Atlas v3.9 Pixel Quest** observer dashboard.
+A role-aware integration entry point for the **Technocore A2A v5.5.3 Action Center** signed
+three-agent workflow and the **Atlas v3.9 Action Center Pixel Quest** observer dashboard.
 This is a release candidate for upgrading existing DID/A2A nodes. Bare hosts
 and new identities are routed to the separate bilingual local-first wizard so
 the integration installer never invents, copies, or uploads a private key.
@@ -25,7 +25,7 @@ continuous agent uptime or the truth of an external research conclusion.
 | --- | --- | --- |
 | Love8 | Scout / dispatch and terminal signature | No |
 | Aizong | Builder / build and revision | No |
-| AI2AI | Reviewer / challenge and evidence verification | v3.9 |
+| AI2AI | Reviewer / challenge, evidence verification, human action inbox | v3.9 alert build |
 | Phone/computer | SSH and browser control plane | SSH port forwarding |
 
 Atlas remains loopback-only on `127.0.0.1:8787`. A phone or computer accesses
@@ -49,6 +49,14 @@ The installer checks out immutable Git commits, verifies the exact HEAD, and
 dispatches only the components allowed for the detected role. Check mode never
 changes managed files, services, keys, rooms, or state. Apply mode operates on
 one node only and never SSHes into the other two nodes.
+
+On AI2AI, the installer also enables the local Human Action Center. Only
+receipt-, Merkle-, artifact-hash-, and cross-validation-gated results enter the
+P0/P1/P2 inbox. Action alerts are immediate, routine stages are folded into a
+daily digest, and Atlas keeps a red Action required badge visible. Telegram
+approval records intent only; it never creates a PR, changes a host, or posts
+publicly. Commands: `/inbox`, `/alert act-ID`, `/ack act-ID`,
+`/approve-pr act-ID`, `/snooze act-ID`, and `/close act-ID`.
 
 ## New identity path
 
