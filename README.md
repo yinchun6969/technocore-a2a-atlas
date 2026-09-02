@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-把 **Technocore A2A v5.5.2** 三 Agent 签名协作流程与 **Atlas v3.9 Pixel Quest**
+把 **Technocore A2A v5.5.3 Action Center** 三 Agent 签名协作流程与 **Atlas v3.9 Action Center Pixel Quest**
 观察面板整合为一个安全入口。当前为安装候选版：优先支持已有 Technocore DID 与
 A2A 节点的升级；裸机与新 DID 通过独立双语向导进入，避免安装器替用户创建或上传私钥。
 
@@ -22,7 +22,7 @@ A2A 节点的升级；裸机与新 DID 通过独立双语向导进入，避免�
 | --- | --- | --- |
 | Love8 | Scout / 派发与终局签名 | 不安装 |
 | Aizong | Builder / 构建与修订 | 不安装 |
-| AI2AI | Reviewer / 挑战与证据验证 | 安装 v3.9 |
+| AI2AI | Reviewer / 挑战、证据验证、人工行动中心 | 安装 v3.9 告警版 |
 | 手机/电脑 | SSH 与浏览器控制端 | 通过本地端口转发访问 |
 
 Atlas 始终监听 `127.0.0.1:8787`，不要将端口直接暴露到公网。手机和电脑通过 SSH
@@ -47,6 +47,14 @@ sudo bash install.sh --apply --role auto --atlas auto
 - AI2AI：A2A 收敛、v5.5.2 evidence/receipt、Atlas v3.9；
 - Aizong：A2A 收敛、Builder 持久化游标轮询；
 - Love8：A2A 收敛、出站去重重试、入站持久化游标轮询。
+
+AI2AI 还会安装本地人工行动中心：只有通过 receipt、Merkle root、artifact SHA-256
+与交叉验证门禁的结果才会进入 P0/P1/P2 待办。P0/P1/P2 立即发送 Telegram 告警，
+普通阶段合并为每日摘要；Atlas 顶部持续显示红色“待处理”徽标。Telegram 的
+“批准准备 PR”只记录人工意图，不会自动创建 PR、修改服务器或公开发帖。
+
+常用命令：`/inbox`、`/alert act-ID`、`/ack act-ID`、`/approve-pr act-ID`、
+`/snooze act-ID`、`/close act-ID`。
 
 默认 `--check` 不修改文件、服务、密钥、房间或状态。`--apply` 只处理当前节点；
 不会从一台主机远程登录另外两台主机。
